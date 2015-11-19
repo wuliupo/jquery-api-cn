@@ -1,3 +1,9 @@
-# jQuery ÖÐÎÄÊÖ²á
+# jQuery ä¸­æ–‡æ‰‹å†Œ
 
-http://hemin.cn/jq/
+- http://hemin.cn/jq/
+- http://api.jquery.com/
+- http://www.jquery123.com/
+- http://jquery.cuishifeng.cn/
+- http://tool.oschina.net/uploads/apidocs/jquery/
+
+
