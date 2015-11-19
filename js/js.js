@@ -295,13 +295,13 @@ var data = {
 	"jQuery.noop":{title:"$.noop",type:"工具"},
 	"jQuery.proxy":{title:"$.proxy(fn,c)",type:"工具"},
 	"jQuery.contains":{title:"$.contains(c,c)",type:"工具"},
+	"jQuery.type":{title:"$.type(obj)",type:"工具"},
 	"jQuery.isArray":{title:"$.isArray(obj)",type:"工具"},
 	"jQuery.isFunction":{title:"$.isFunction(obj)",type:"工具"},
 	"jQuery.isEmptyObject":{title:"$.isEmptyObject(obj)",type:"工具"},
 	"jQuery.isPlainObject":{title:"$.isPlainObject(obj)",type:"工具"},
 	"jQuery.isWindow":{title:"$.isWindow(obj)",type:"工具"},
 	"jQuery.isNumeric":{title:"$.isNumeric(value)",type:"工具"},
-	"jQuery.type":{title:"$.type(obj)",type:"工具"},
 	"jQuery.trim":{title:"$.trim(str)",type:"工具"},
 	"jQuery.param":{title:"$.param(obj,[traditional])",type:"工具"},
 	"jQuery.error":{title:"$.error(message)",type:"工具"},
@@ -381,82 +381,20 @@ if(thisRelName == "jQuery_selector_context"){
 }else{
 	$("#content").append("<div class='navigation'><div class='alignleft'>上一篇：<a href='"+hemin.prev.url+".html'>"+hemin.prev.title+"</a></div><div class='alignright'>下一篇：<a href='"+hemin.next.url+".html'>"+hemin.next.title+"</a></div></div>");
 }
-
-
 $("#content").append("<a id='go_home' title='回到首页' href='cheatsheet.html' >首页</a><div id='go_top' title='回到顶部'>顶部</div>");
 
 var this_height = $("body").height();
-$('#J_right',window.parent.document).height(this_height+10);
+$('#J_right').height(this_height+10);
 	
 $(document).on('click','#go_top',function(){
-	$('body,html',window.parent.document).animate({scrollTop:0},500);
+	$('body,html').animate({scrollTop:0},500);
 });
-
-$(document).on('click','a',function(){
-		var t_href = $(this).attr("href");
-		window.parent.history.pushState(null, null, t_href);
-		$(".dtree li a.up",window.parent.document).removeClass("up");
-		$(".dtree ol",window.parent.document).hide();
-		$(".dtree h2",window.parent.document).removeClass("up");
-		
-		$('.dtree li a[href="'+t_href+'"]',window.parent.document).parents("ol").show();
-		$('.dtree li a[href="'+t_href+'"]',window.parent.document).parents("ol").siblings("h2").addClass("up");
-		$('.dtree li a[href="'+t_href+'"]',window.parent.document).addClass("up");
-		
-	//return false;
-});
-
-if($("body",window.parent.document).attr("id") != "gdt"){
+if($("body").attr("id") != "gdt"){
 	$(".pc,#go_home").attr("href","index.html");
 }
-
-$("#show_donate_list").load("./downloads/index.html #J_donate_list");
-
-/*$(".navigation,.retRight").on('click','a', function(e) {
-	
-	if($("div").attr("id") == "right"){
-		$("#right").load($(this).attr('href'));
-	}
-	$('#iframe_over',parent.document).slideDown(800);
-	$("#conview",parent.document).delay(800).append('<iframe id=iframe_over src='+$(this).attr('href')+'></iframe>');
-
-	$('#iframe_over:eq(0)',parent.document).remove();
-	
-	window.history.pushState(null, null, $(this).attr('href'));
-	e.preventDefault();	
-	window.addEventListener('popstate', function(e) { 
-		$('#conview').remove();
-	　　　$("#right").load(location.pathname); 
-　	});
-});*/
-
-/*$(document).on("click","#go_home",function(){
-	location.href='index.html';
-});*/
-
-/*try{ 
-		var state = { 
-		title : "hemin jq_manual", 
-		url : thisRelName+".html"
-		}; 
-		history.pushState(state, state.title, state.url);
-		//alert(thisRelName+".html");
-} 
-catch(e){ 
-	//alert('您的浏览器不支持');	
-} 	*/
-//alert(hemin.thisName.index);
-//获取数据
-//console.log("Prve:" + hemin.prev.index + "," + hemin.prev.title + "," + hemin.prev.cont + "\nNext:" + hemin.next.index + "," + hemin.next.title + "," + hemin.next.cont);
-
+$("#menu").load("__left.html",function(){
+	var UrlFileName=location.href.split('/');
+	var Menu=FileName=UrlFileName[UrlFileName.length-1];
+	$("#menu li a[href='"+Menu+"']").addClass("up").parent().parent().show().siblings("h2").addClass("up");
 });
-
-
-/*if(num<= 18){ newData[k]["type"] = "核心";}//18
-if(19<=num && num<= (19+51)){ newData[k]["type"] = "选择器";}//51
-if(52<=num && num<= (51+9)){ newData[k]["type"] ="属性"}//9
-if((51+9+1)<=num && num<= (51+9+1+26)){ newData[k]["type"] ="筛选"}//26*/
-
-//语言切换
-//var name = (lang == "cn" && hemin.prev.type == "core") ? "核心" : hemin.prev.type;	
-//获取当前名称，判断当前名称对于索引号，+1上一篇 -1下一篇
+});

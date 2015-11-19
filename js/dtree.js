@@ -1,6 +1,7 @@
 $(function () {
 	$(".dtree").height($(window).height());
-	$(".dtree h2").click(function(){
+	$(document).on('click','.dtree h2',function(){
+	//$(".dtree h2").click(function(){
 /*		if($(this).hasClass("up")){
 			$(this).siblings("ol").slideUp("fast").removeClass("up");
 		}else{
@@ -25,12 +26,12 @@ $("#closeAll").click(function(){
 	$(".dtree h2").removeClass("up");
 });
 
-$(".dtree li").on('click','a', function() {
+/*$(".dtree li").on('click','a', function() {
 	$(".dtree li a.up").removeClass("up");
 	$(this).addClass("up");
 	//$(this).attr("href","javascript:void(0)");
 	//var thisHref = $(this).attr(href);
-});
+});*/
 
 
     $.ajax({
@@ -47,15 +48,8 @@ $(".dtree li").on('click','a', function() {
             lookup: countries,
             onSelect: function (suggestion) {
                 //status.html('You selected: ' + suggestion);
-				var url = suggestion+".html";		
-				$("#J_right").attr("src",url);
-				window.history.pushState(null, null, url);
-				$(".dtree li a.up").removeClass("up");
-				$(".dtree ol").hide();
-				$(".dtree h2").removeClass("up"); 
-				$('.dtree li a[href="'+url+'"]').parents("ol").show();
-				$('.dtree li a[href="'+url+'"]').parents("ol").siblings("h2").addClass("up");
-				$('.dtree li a[href="'+url+'"]').addClass("up");
+				var url = suggestion+".html";	
+				$("#menu li a[href='"+url+"']")[0].click();
             }
         });
     });
@@ -64,14 +58,7 @@ $(".dtree li").on('click','a', function() {
 			var soval = $("#query").val();
 			if(soval){
 				var url = soval+".html";
-				$("#J_right").attr("src",url);
-				window.history.pushState(null, null, url);
-				$(".dtree li a.up").removeClass("up");
-				$(".dtree ol").hide();
-				$(".dtree h2").removeClass("up"); 
-				$('.dtree li a[href="'+url+'"]').parents("ol").show();
-				$('.dtree li a[href="'+url+'"]').parents("ol").siblings("h2").addClass("up");
-				$('.dtree li a[href="'+url+'"]').addClass("up");				
+				$("#menu li a[href='"+url+"']")[0].click();			
 			}
 		} 
 	})
@@ -79,15 +66,7 @@ $(".dtree li").on('click','a', function() {
 		var soval = $("#query").val();
 		if(soval){
 			var url = soval+".html";
-			$("#J_right").attr("src",url);
-			window.history.pushState(null, null, url);
-				$(".dtree li a.up").removeClass("up");
-				$(".dtree ol").hide();
-				$(".dtree h2").removeClass("up"); 
-				$('.dtree li a[href="'+url+'"]').parents("ol").show();
-				$('.dtree li a[href="'+url+'"]').parents("ol").siblings("h2").addClass("up");
-				$('.dtree li a[href="'+url+'"]').addClass("up");			
+			$("#menu li a[href='"+url+"']")[0].click();		
 		}
 	});
-
 });

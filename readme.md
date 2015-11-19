@@ -1,3 +1,3 @@
-# jQuery ä¸­æ–‡æ‰‹å†Œ
+# jQuery ÖĞÎÄÊÖ²á
 
-- <http://hemin.cn/jq/index.html>
+http://hemin.cn/jq/

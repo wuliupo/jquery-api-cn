@@ -4,12 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>jQuery.ajax(url,[settings]) | jQuery API 中文手册</title>
 <meta name="author" content="jQuery 中文手册 - hemin.cn/jq/">
-<meta name="description" content="jQuery中文手册(在线版),作者:hemin,在线手册:hemin.cn/jq/,下载:hemin.cn/jq/downloads/">
+<meta name="description" content="该方法是 jQuery 底层 AJAX 实现。简单易用的高层实现见 $.get, $.post 等。$.ajax() 返回其创建的 XMLHttpRequest 对象。大多数情况下你无需直接操作该函数，除非你需要操作不常用的选项，以获得更多的灵活性。 - jQuery API 中文手册">
+<meta name="keywords" content="jquery,chm,手册,在线,api" />
+<link type="image/x-icon" href="img/favicon.ico" rel="shortcut icon">
 <link type="text/css" rel="stylesheet" href="style/style.css"  />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/js.js"></script>
 </head>
+
 <body id="split">
+<div id='left' class='dtree'>
+  <p style="text-align:center">
+    <input type="text" name="query" id="query" placeholder="请输入关键字"/>
+    <!--<input type="button" id="butsoso" value="搜索" />--></p>
+  <p style="margin:7px 0; text-align:center"><a href="javascript:void(0)" id="openAll">全部展开</a> | <a href="javascript:void(0)" id="closeAll">全部折叠 </a> | <a href="index.html">速查表</a></p>
+  <div id="menu"> </div>
+</div>
 <div id="content" class="a2">
   <div rel="jQuery.ajax">
     <h2><span>返回值:XMLHttpRequest</span>jQuery.ajax(url,[settings])</h2>
@@ -67,7 +75,9 @@
       <h4><strong>beforeSend(XHR)</strong><span>Function</span></h4>
       <p>发送请求前可修改 XMLHttpRequest 对象的函数，如添加自定义 HTTP 头。XMLHttpRequest 对象是唯一的参数。这是一个 <a href="http://docs.jquery.com/Ajax_Events" title="Ajax Events">Ajax 事件</a>。如果返回false可以取消本次ajax请求。
       <pre>function (XMLHttpRequest) {
+
     this; // 调用本次AJAX请求时传递的options参数
+
 }</pre>
       </p>
       <h4><strong>cache</strong><span>Boolean</span></h4>
@@ -75,7 +85,9 @@
       <h4><strong>complete(XHR, TS)</strong><span>Function</span></h4>
       <p>请求完成后回调函数 (请求成功或失败之后均调用)。参数：  XMLHttpRequest 对象和一个描述成功请求类型的字符串。 <a href="http://docs.jquery.com/Ajax_Events" title="Ajax Events">Ajax 事件</a>。
       <pre>function (XMLHttpRequest, textStatus) {
+
     this; // 调用本次AJAX请求时传递的options参数
+
 }</pre>
       </p>
       <h4><strong>contents</strong><span>Map</span><em>V1.5</em></h4>
@@ -85,7 +97,9 @@
       <h4><strong>context</strong><span>Object</span></h4>
       <p>这个对象用于设置Ajax相关回调函数的上下文。也就是说，让回调函数内this指向这个对象（如果不设定这个参数，那么this就指向调用本次AJAX请求时传递的options参数）。比如指定一个DOM元素作为context参数，这样就设置了success回调函数的上下文为这个DOM元素。就像这样：
       <pre>$.ajax({ url: "test.html", context: document.body, success: function(){
+
     $(this).addClass("done");
+
 }});</pre>
       </p>
       <h4><strong>converters</strong><span>map</span><em>V1.5</em></h4>
@@ -99,8 +113,11 @@
       <h4><strong>dataFilter</strong><span>Function</span></h4>
       <p>给Ajax返回的原始数据的进行预处理的函数。提供data和type两个参数：data是Ajax返回的原始数据，type是调用jQuery.ajax时提供的dataType参数。函数返回的值将由jQuery进一步处理。
       <pre>function (data, type) {
+
     // 对Ajax返回的原始数据进行预处理
+
     return data  // 返回处理后的数据
+
 }</pre>
       </p>
       <h4><strong>dataType</strong><span>String</span></h4>
@@ -116,9 +133,13 @@
       <h4><strong>error</strong><span>Function</span></h4>
       <p>(默认: 自动判断 (xml 或 html)) 请求失败时调用此函数。有以下三个参数：XMLHttpRequest 对象、错误信息、（可选）捕获的异常对象。如果发生了错误，错误信息（第二个参数）除了得到null之外，还可能是"timeout", "error", "notmodified" 和 "parsererror"。<a href="http://docs.jquery.com/Ajax_Events" title="Ajax Events">Ajax 事件</a>。
       <pre>function (XMLHttpRequest, textStatus, errorThrown) {
+
     // 通常 textStatus 和 errorThrown 之中
+
     // 只有一个会包含信息
+
     this; // 调用本次AJAX请求时传递的options参数
+
 }</pre>
       </p>
       <h4><strong>global</strong><span>Boolean</span></h4>
@@ -147,16 +168,23 @@
       <p>默认: {}</p>
       <p> 一组数值的HTTP代码和函数对象，当响应时调用了相应的代码。例如，如果响应状态是404，将触发以下警报：
       <pre>$.ajax({
+
   statusCode: {404: function() {
+
     alert('page not found');
+
   }
+
 });</pre>
       </p>
       <h4><strong>success(data, textStatus, jqXHR)</strong><span>Function,Array</span></h4>
       <p>请求成功后的回调函数。参数：由服务器返回，并根据dataType参数进行处理后的数据；描述状态的字符串。还有 jqXHR（在jQuery 1.4.x的中，XMLHttpRequest） 对象 。在jQuery 1.5， 成功设置可以接受一个函数数组。每个函数将被依次调用。 <a href="http://docs.jquery.com/Ajax_Events" title="Ajax Events">Ajax 事件</a>。
       <pre>function (data, textStatus) {
+
     // data 可能是 xmlDoc, jsonObj, html, text, 等等...
+
     this; // 调用本次AJAX请求时传递的options参数
+
 }</pre>
       </p>
       <h4><strong>traditional</strong><span>Boolean</span></h4>
@@ -181,50 +209,80 @@
       <p>加载并执行一个 JS 文件。</p>
       <h5>jQuery 代码:</h5>
       <pre><code>$.ajax({
+
   type: "GET",
+
   url: "test.js",
+
   dataType: "script"
+
 });</code></pre>
       <h4>描述:</h4>
       <p>保存数据到服务器，成功时显示信息。</p>
       <h5>jQuery 代码:</h5>
       <pre><code>$.ajax({
+
    type: "POST",
+
    url: "some.php",
+
    data: "name=John&amp;location=Boston",
+
    success: function(msg){
+
      alert( "Data Saved: " + msg );
+
    }
+
 });</code></pre>
       <h4>描述:</h4>
       <p>装入一个 HTML 网页最新版本。</p>
       <h5>jQuery 代码:</h5>
       <pre><code>$.ajax({
+
   url: "test.html",
+
   cache: false,
+
   success: function(html){
+
     $("#results").append(html);
+
   }
+
 });</code></pre>
       <h4>描述:</h4>
       <p>同步加载数据。发送请求时锁住浏览器。需要锁定用户交互操作时使用同步方式。</p>
       <h5>jQuery 代码:</h5>
       <pre><code> var html = $.ajax({
+
   url: "some.php",
+
   async: false
+
  }).responseText;</code></pre>
       <h4>描述:</h4>
       <p>发送 XML 数据至服务器。设置 processData 选项为 false，防止自动转换数据格式。</p>
       <h5>jQuery 代码:</h5>
       <pre><code> var xmlDocument = [create xml document];
+
  $.ajax({
+
    url: "page.php",
+
    processData: false,
+
    data: xmlDocument,
+
    success: handleResponse
+
  });</code></pre>
     </div>
-  </div>
+  </div>
 </div>
 </body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="js/dtree.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
 </html>
