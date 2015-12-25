@@ -45,7 +45,7 @@ $("#closeAll").click(function(){
 
 
     $.ajax({
-        url: 'js/dtree.txt',
+        url: 'js/data.txt',
         dataType: 'json'
     }).done(function (data) {
         var status = $('#selection'),
