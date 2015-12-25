@@ -1,5 +1,15 @@
 $(function () {
-	$(".dtree").height($(window).height());
+	$.get('__left.html', function(data){
+		$('#container').html(data);
+		data=data.replace(/<ul>/ig, '<ol>').replace(/<\/ul>/ig, '</ol>');
+		data=$(data);
+		var oldli=data.find('div>ol>li');
+		data.find('li li').unwrap().unwrap();
+		//oldli.remove();
+		data.find('h3').remove();
+		$('#menu').append(data.find('div'));
+	});
+	//$(".dtree").height($(window).height());
 	$(document).on('click','.dtree h2',function(){
 	//$(".dtree h2").click(function(){
 /*		if($(this).hasClass("up")){
@@ -35,7 +45,7 @@ $("#closeAll").click(function(){
 
 
     $.ajax({
-        url: 'js/data.txt',
+        url: 'js/dtree.txt',
         dataType: 'json'
     }).done(function (data) {
         var status = $('#selection'),
